@@ -60,3 +60,16 @@ def getSingleColor(request):
     # return Response(jsonData['name'])
     return Response(colorArray[0])
     # return Response("Hi")
+
+
+
+@api_view(['POST'])
+def getNColors(request):
+    jsonData = json.loads(request.body)
+    data = urllib.request.urlretrieve(jsonData['imageURI'], 'img.png')
+    n = jsonData['numberOfColors']
+    colorArray = get_colors(get_image('img.png'), n, False)
+    print(colorArray)
+    # return Response(jsonData['name'])
+    return Response(colorArray)
+    # return Response("Hi")
